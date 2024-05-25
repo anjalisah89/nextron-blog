@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -7,7 +8,7 @@ const Header = () => {
       <header className="sticky top-0 z-50 w-full lg:pl-12 lg:pr-12 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-14 max-w-screen-2xl items-center">
           <div className="mr-4 hidden md:flex">
-            <a className="mr-8 flex items-center space-x-2" href="/">
+            <Link className="mr-8 flex items-center space-x-2" href="/">
               <Image
                 src="/image/logo.svg"
                 className="h-8 w-8"
@@ -16,38 +17,38 @@ const Header = () => {
                 alt=""
               />
               <span className="hidden font-bold sm:inline-block">NEXTRON</span>
-            </a>
+            </Link>
             <nav className="flex items-center p-8 gap-4 text-sm lg:gap-6">
-              <a
+              <Link
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
                 href="/"
               >
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
                 href="/blogs"
               >
                 Blogs
-              </a>
-              <a
+              </Link>
+              <Link
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
                 href="/"
               >
                 Newsletters
-              </a>
-              <a
+              </Link>
+              <Link
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
                 href="/"
               >
                 Author
-              </a>
-              <a
+              </Link>
+              <Link
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
                 href="/"
               >
                 Featured
-              </a>
+              </Link>
             </nav>
           </div>
           <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
@@ -78,7 +79,7 @@ const Header = () => {
               </form>
             </div>
             <nav className="flex items-center">
-              <a
+              <Link
                 target="_blank"
                 rel="noreferrer"
                 href="https://github.com/anjalisah89/nextron-blog"
@@ -90,7 +91,7 @@ const Header = () => {
                   height={30}
                   alt=""
                 />
-              </a>
+              </Link>
             </nav>
           </div>
         </div>

@@ -4,7 +4,7 @@ import moment from "moment";
 import Link from "next/link";
 
 const PostCard = ({ post }) => (
-  <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
+  <div className="bg-white-200 backdrop-blur border-b border-border/40 shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
     <div className="relative overflow-hidden shadow-md pb-80 mb-6">
       <Image
         unoptimized
