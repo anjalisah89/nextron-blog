@@ -5,13 +5,15 @@ import Categories from "@/components/Categories";
 import PostCard from "@/components/PostCard";
 import PostWidget from "@/components/PostWidget";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GET_POSTS } from "@/services/index";
+import { getPosts } from "@/services/index";
 
 export default function Home({ posts }) {
   return (
     <>
       <Head>
-        <title>Nextron Blog</title>
+        <title>Nextron - Tech Blogs</title>
+        <meta name="description" content="Next Js Headless CMS GraphQL Blog App"/>
+        <link rel="icon" href="/image/logo.svg" type="image/svg+xml"/>
       </Head>
       <Header />
       <div className="container mx-auto px-10 mb-8">
@@ -50,7 +52,7 @@ export async function getStaticProps() {
   });
 
   try {
-    const { data } = await client.query({ query: GET_POSTS });
+    const { data } = await client.query({ query: getPosts });
     // console.log("data", data);
 
     return {

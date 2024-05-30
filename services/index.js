@@ -1,7 +1,10 @@
 import { gql } from '@apollo/client';
+import { request } from 'graphql-request';
 
-export const GET_POSTS = gql`
-query MyQuery {
+const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+
+export const getPosts = gql`
+query GetPosts {
     postsConnection {
       edges {
         node {
@@ -29,3 +32,43 @@ query MyQuery {
     }
   }
 `;
+
+export const getRecentPosts = async() =>{
+ const query = gql`
+ query GetRecentPosts(){
+   posts(
+     orderBy: createdAt_ASC
+     last: 3
+   ) {
+     title
+     featuredImage {
+       url
+     }
+     createdAt
+     slug
+   }
+ }
+ `;
+ const result = await request (graphqlAPI,query);
+ return result.posts;
+} 
+
+export const getSimilarPosts = async() =>{
+  const query = gql`
+  query getSimilarPosts($slug: String!, $categories: [String!]){
+    posts(
+     Where: { slug_not: $slug, AND: {Categories_some: { slug_in: $categories}}}
+     lasts: 3
+    ) {
+      title
+      featuredImage {
+        url
+      }
+      createdAt
+      slug
+    }
+  }
+  `;
+  const result = await request (graphqlAPI,query);
+  return result.posts;
+ } 

@@ -4,14 +4,14 @@ import moment from "moment";
 import Link from "next/link";
 
 const PostCard = ({ post }) => (
-  <div className="bg-white-200 backdrop-blur border-b border-border/40 shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
+  <div className="backdrop-blur border-b border-border/40 shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
     <div className="relative overflow-hidden shadow-md pb-80 mb-6">
       <Image
         unoptimized
         fetchpriority="high"
         src={post.featuredImage.url}
         alt="Image"
-        className="object-top absolute h-80 w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg"
+        className="object-top absolute h-80 w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
         height={30}
         width={30}
       />
@@ -55,7 +55,7 @@ const PostCard = ({ post }) => (
         </span>
       </div>
     </div>
-    <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">
+    <p className="text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8 text-justify">
       {post.excerpt}
     </p>
     <div className="text-center">
