@@ -48,7 +48,7 @@ export const getPostDetails = gql`
       slug
       title
       excerpt
-      content{
+      content {
         raw
       }
       featuredImage {
@@ -64,7 +64,7 @@ export const getPostDetails = gql`
 
 export const getRecentPosts = async () => {
   if (!graphqlAPI) {
-    console.error('GraphQL API endpoint is not defined');
+    console.error("GraphQL API endpoint is not defined");
     return [];
   }
   const query = gql`
@@ -85,7 +85,7 @@ export const getRecentPosts = async () => {
 
 export const getSimilarPosts = async (slug, categories) => {
   if (!graphqlAPI) {
-    console.error('GraphQL API endpoint is not defined');
+    console.error("GraphQL API endpoint is not defined");
     return [];
   }
   const query = gql`
@@ -113,7 +113,7 @@ export const getSimilarPosts = async (slug, categories) => {
 
 export const getCategories = async () => {
   if (!graphqlAPI) {
-    console.error('GraphQL API endpoint is not defined');
+    console.error("GraphQL API endpoint is not defined");
     return [];
   }
   const query = gql`
@@ -128,4 +128,45 @@ export const getCategories = async () => {
   const result = await request(graphqlAPI, query);
 
   return result.categories;
+};
+
+export const submitComment = async (obj) => {
+  if (!graphqlAPI) {
+    console.error("GraphQL API endpoint is not defined");
+    return [];
+  }
+  const result = await fetch("/api/comments", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(obj),
+  });
+
+  return result.json();
+};
+
+export const getComments = async (slug) => {
+  if (!graphqlAPI) {
+    console.error("GraphQL API endpoint is not defined");
+    return [];
+  }
+  const query = gql`
+    query GetComments($slug: String!) {
+      comments(where: { post: { slug: $slug } }) {
+        name
+        createdAt
+        comment
+      }
+    }
+  `;
+
+  try {
+    const result = await request(graphqlAPI, query, { slug });
+
+    return result.comments.length ? result.comments : null;
+  } catch (error) {
+    console.error("GraphQL query error:", error);
+    return null;
+  }
 };
