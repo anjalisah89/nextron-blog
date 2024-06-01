@@ -65,25 +65,29 @@ const PostDetail = ({ post }) => {
     <>
       <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8 lg:mt-4">
         <div className="relative overflow-hidden shadow-md mb-6">
-          <Image
-            unoptimized
-            src={post?.featuredImage?.url}
-            alt=""
-            height={60}
-            width={60}
-            className="object-top h-full w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
-          />
+          {post?.featuredImage?.url ? (
+            <Image
+              unoptimized
+              src={post?.featuredImage?.url}
+              alt=""
+              height={60}
+              width={60}
+              className="object-top h-full w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
+            />
+          ) : null}
         </div>
         <div className="px-4 lg:px-0">
           <div className="flex items-center mb-8 w-full">
             <div className="hidden md:flex items-center justify-center lg:mb-0 lg:w-auto mr-8">
-              <Image
-                alt={post?.author?.name}
-                height={30}
-                width={30}
-                className="align-middle rounded-full"
-                src={post?.author?.photo?.url}
-              />
+              {post?.author?.photo?.url ? (
+                <Image
+                  alt={post?.author?.name}
+                  height={30}
+                  width={30}
+                  className="align-middle rounded-full"
+                  src={post?.author?.photo?.url}
+                />
+              ) : null}
               <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
                 {post?.author?.name}
               </p>
@@ -108,7 +112,7 @@ const PostDetail = ({ post }) => {
               </span>
             </div>
           </div>
-          <h1 className="mb-8 text-3xl font-semibold">{post?.title}</h1>
+          <h1 className="mb-8 text-3xl font-semibold">{post?.title ? post?.title : "Oops!! Something went wrong."}</h1>
           {post?.content?.raw?.children.map((typeObj, index) => {
             const children = typeObj.children.map((item, itemindex) =>
               getContentFragment(itemindex, item.text, item)
@@ -122,4 +126,4 @@ const PostDetail = ({ post }) => {
   );
 };
 
-export default PostDetail
+export default PostDetail;

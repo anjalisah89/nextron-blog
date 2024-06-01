@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const PostCard = ({ post }) => (
   <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
-        <div className="relative overflow-hidden shadow-md mb-6">
+    <div className="relative overflow-hidden shadow-md mb-6">
       <Image
         unoptimized
         fetchpriority="high"

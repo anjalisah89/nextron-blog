@@ -10,7 +10,7 @@ export default function Home({ posts }) {
   return (
     <>
       <Head>
-        <title>Nextron - Tech Blogs</title>
+        <title>Blogs</title>
         <meta
           name="description"
           content="Next Js Headless CMS GraphQL Blog App"
