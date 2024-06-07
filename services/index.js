@@ -170,3 +170,37 @@ export const getComments = async (slug) => {
     return null;
   }
 };
+
+export const getFeaturedPosts = async () => {
+  if (!graphqlAPI) {
+    console.error("GraphQL API endpoint is not defined");
+    return [];
+  }
+  
+  const query = gql`
+    query GetCategoryPost {
+      posts(where: {featuredPost: true}) {
+        author {
+          name
+          photo {
+            url
+          }
+        }
+        featuredImage {
+          url
+        }
+        title
+        slug
+        createdAt
+      }
+    }
+  `;
+
+  try {
+    const result = await request(graphqlAPI, query);
+    return result.posts;
+  } catch (error) {
+    console.error("Error fetching featured posts:", error);
+    return [];
+  }
+};
