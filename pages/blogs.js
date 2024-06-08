@@ -7,6 +7,7 @@ import Loader from "@/components/Loader";
 import { useRouter } from "next/router";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { getPosts } from "@/services";
+import Footer from "@/components/Footer";
 
 export default function Blogs({ posts }) {
   const router = useRouter();
@@ -40,6 +41,7 @@ export default function Blogs({ posts }) {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

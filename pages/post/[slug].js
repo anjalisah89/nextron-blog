@@ -9,6 +9,7 @@ import PostWidget from "@/components/PostWidget";
 import Author from "@/components/Author";
 import CommentsForm from "@/components/CommentsForm";
 import Comments from "@/components/Comments";
+import Footer from "@/components/Footer";
 
 const PostDetails = ({ post }) => {
   return (
@@ -38,6 +39,7 @@ const PostDetails = ({ post }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

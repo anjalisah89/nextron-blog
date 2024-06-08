@@ -7,6 +7,7 @@ import Loader from "@/components/Loader";
 import Categories from "@/components/Categories";
 import PostCard from "@/components/PostCard";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const CategoryPost = ({ posts }) => {
   const router = useRouter();
@@ -44,6 +45,7 @@ const CategoryPost = ({ posts }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
