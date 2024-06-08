@@ -6,15 +6,17 @@ import Link from "next/link";
 const PostCard = ({ post }) => (
   <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
     <div className="relative overflow-hidden shadow-md mb-6">
-      <Image
-        unoptimized
-        fetchpriority="high"
-        src={post.featuredImage.url}
-        alt="Image"
-        className="object-top h-full w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
-        height={60}
-        width={60}
-      />
+      {post.featuredImage.url ? (
+        <Image
+          unoptimized
+          fetchpriority="high"
+          src={post.featuredImage.url}
+          alt="Image"
+          className="object-top h-full w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
+          height={60}
+          width={60}
+        />
+      ) : null}
     </div>
 
     <h1 className="transition duration-700 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
@@ -32,7 +34,7 @@ const PostCard = ({ post }) => (
           src={post.author.photo.url}
         />
         <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
-          {post.author.name}
+          {post.author.name ? post.author.name : "Anonymous"}
         </p>
       </div>
       <div className="font-medium text-gray-700">

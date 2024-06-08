@@ -89,7 +89,7 @@ const PostDetail = ({ post }) => {
                 />
               ) : null}
               <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
-                {post?.author?.name}
+                {post.author.name ? post.author.name : "Anonymous"}
               </p>
             </div>
             <div className="font-medium text-gray-700">
@@ -112,7 +112,9 @@ const PostDetail = ({ post }) => {
               </span>
             </div>
           </div>
-          <h1 className="mb-8 text-3xl font-semibold">{post?.title ? post?.title : "Oops!! Something went wrong."}</h1>
+          <h1 className="mb-8 text-3xl font-semibold">
+            {post?.title ? post?.title : "Oops!! Something went wrong."}
+          </h1>
           {post?.content?.raw?.children.map((typeObj, index) => {
             const children = typeObj.children.map((item, itemindex) =>
               getContentFragment(itemindex, item.text, item)

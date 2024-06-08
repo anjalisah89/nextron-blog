@@ -4,8 +4,8 @@ import Categories from "@/components/Categories";
 import PostCard from "@/components/PostCard";
 import PostWidget from "@/components/PostWidget";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { getPosts } from "@/services/index";
-import  FeaturedPosts from "@/components/FeaturedPosts";
+import { getPosts } from "@/services";
+import FeaturedPosts from "@/components/FeaturedPosts";
 export default function Home({ posts }) {
   return (
     <>
@@ -18,8 +18,8 @@ export default function Home({ posts }) {
         <link rel="icon" href="/image/logo.svg" type="image/svg+xml" />
       </Head>
       <Header />
-      <FeaturedPosts />
-      <div className="container mx-auto px-10 mb-8">
+      <div className="container mx-auto px-10 mb-4 mt-4">
+        <FeaturedPosts />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-8 col-span-1 mt-4 rounded-lg">
             {posts.map((post, index) => (

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
-import { FeaturedPostCard } from "@/components/FeaturedPostcard";
-import { getFeaturedPosts } from "@/services/index";
+import FeaturedPostCard from "@/components/FeaturedPostcard";
+import { getFeaturedPosts } from "@/services";
 
 const responsive = {
   superLargeDesktop: {
@@ -26,15 +25,20 @@ const responsive = {
 
 const FeaturedPosts = () => {
   const [featuredPosts, setFeaturedPosts] = useState([]);
-  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    getFeaturedPosts().then((result) => {
-      setFeaturedPosts(result);
-      setDataLoaded(true);
-    });
+    const fetchFeaturedPosts = async () => {
+      const result = await getFeaturedPosts();
+      // console.log("FeaturedPosts", result);
+      if (result && result.length > 0) {
+        setFeaturedPosts(result);
+      } else {
+        console.error("No featured posts retrieved");
+      }
+    };
+
+    fetchFeaturedPosts();
   }, []);
-  console.log("featuredPosts",featuredPosts);
 
   const customLeftArrow = (
     <div className="absolute arrow-btn left-0 text-center py-3 cursor-pointer bg-pink-600 rounded-full">
@@ -76,7 +80,7 @@ const FeaturedPosts = () => {
 
   return (
     <div className="mb-8">
-      {/* {dataLoaded && featuredPosts ? (
+      {featuredPosts ? (
         <Carousel
           infinite
           customLeftArrow={customLeftArrow}
@@ -88,7 +92,7 @@ const FeaturedPosts = () => {
             <FeaturedPostCard key={index} post={post} />
           ))}
         </Carousel>
-      ) : null} */}
+      ) : null}
     </div>
   );
 };

@@ -3,10 +3,17 @@ import Header from "@/components/Header";
 import Categories from "@/components/Categories";
 import PostCard from "@/components/PostCard";
 import PostWidget from "@/components/PostWidget";
+import Loader from "@/components/Loader";
+import { useRouter } from "next/router";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { getPosts } from "@/services/index";
+import { getPosts } from "@/services";
 
-export default function Home({ posts }) {
+export default function Blogs({ posts }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loader />;
+  }
   return (
     <>
       <Head>

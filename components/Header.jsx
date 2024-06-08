@@ -35,19 +35,19 @@ const Header = () => {
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
                 href="/"
               >
-                Newsletters
+                Researches
               </Link>
               <Link
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
                 href="/"
               >
-                Author
+                Contact
               </Link>
               <Link
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
                 href="/"
               >
-                Featured
+                Featured 
               </Link>
             </nav>
           </div>

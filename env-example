@@ -1,0 +1,3 @@
+#Your API endpoint
+#NEXT_PUBLIC_GRAPHCMS_ENDPOINT=https://api-app.com/your-graphcms-endpoint/master
+#GRAPHCMS_TOKEN='Your_GraphCMS_Token'
