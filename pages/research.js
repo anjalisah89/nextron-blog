@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ResearchCard from "@/components/ResearchCard";
 
 const Research = () => {
   return (
@@ -15,7 +16,7 @@ const Research = () => {
         <link rel="icon" href="/image/logo.svg" type="image/svg+xml" />
       </Head>
       <Header />
-      <div>Research</div>
+      <ResearchCard />
       <Footer />
     </>
   );

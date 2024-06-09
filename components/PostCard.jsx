@@ -4,7 +4,7 @@ import moment from "moment";
 import Link from "next/link";
 
 const PostCard = ({ post }) => (
-  <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
+  <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-4">
     <div className="relative overflow-hidden shadow-md mb-6">
       {post.featuredImage.url ? (
         <Image
@@ -18,7 +18,6 @@ const PostCard = ({ post }) => (
         />
       ) : null}
     </div>
-
     <h1 className="transition duration-700 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
       <Link href={`/post/${post.slug}`}>{post.title}</Link>
     </h1>
@@ -53,17 +52,18 @@ const PostCard = ({ post }) => (
           />
         </svg>
         <span className="align-middle">
-          {moment(post.createdAt).format("MMM DD, YYYY")}
+          Published: {moment(post.createdAt).format("MMM DD, YYYY")}
         </span>
       </div>
     </div>
-    <p className="text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8 text-justify">
-      {post.excerpt}
+    <p className="text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8 text-center">
+      {post.excerpt.split(" ").slice(0, 10).join(" ") +
+        (post.excerpt.split(" ").length > 10 ? "..." : "")}
     </p>
     <div className="text-center">
       <Link href={`/post/${post.slug}`}>
         <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">
-          Continue Reading
+          Read More
         </span>
       </Link>
     </div>

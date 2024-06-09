@@ -40,7 +40,7 @@ export default function Home({ posts }) {
                     Get Started
                   </span>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/articles"}>
                   <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-gray-100 text-lg font-medium rounded-full text-black px-8 py-3 cursor-pointer">
                     Trending
                   </span>
@@ -71,18 +71,34 @@ export default function Home({ posts }) {
                 are excited to hear from you.
               </p>
               <div className="flex justify-center">
-                <Link href={"/"}>
+                <Link href={"/research"}>
                   <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">
-                    Updates
+                    Articles
                   </span>
                 </Link>
               </div>
             </div>
           </div>
+          <div className="flex flex-col text-center w-full lg:mb-5 mt-5">
+            <h2 className="text-xs text-pink-500 tracking-widest font-medium title-font mb-1">
+              Most Viewed
+            </h2>
+            <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+              Featured Articles
+            </h1>
+          </div>
           <FeaturedPosts />
         </section>
         <div className="lg:grid lg:grid-cols-12 lg:gap-12 px-5">
           <div className="lg:col-span-8 col-span-1 mt-4 rounded-lg">
+            <div className="flex flex-col text-center w-full mb-5">
+              <h2 className="text-xs text-pink-500 tracking-widest font-medium title-font mb-1">
+                1 min Read
+              </h2>
+              <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+                Latest Articles
+              </h1>
+            </div>
             {posts.map((post, index) => (
               <PostCard key={index} post={post.node} />
             ))}

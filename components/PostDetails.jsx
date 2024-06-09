@@ -63,7 +63,7 @@ const PostDetail = ({ post }) => {
 
   return (
     <>
-      <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8 lg:mt-4">
+      <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8 lg:mt-4 mt-4">
         <div className="relative overflow-hidden shadow-md mb-6">
           {post?.featuredImage?.url ? (
             <Image
@@ -108,7 +108,7 @@ const PostDetail = ({ post }) => {
                 />
               </svg>
               <span className="align-middle">
-                {moment(post?.createdAt).format("MMM DD, YYYY")}
+                Published: {moment(post?.createdAt).format("MMM DD, YYYY")}
               </span>
             </div>
           </div>

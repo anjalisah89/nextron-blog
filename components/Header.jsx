@@ -36,9 +36,9 @@ const Header = () => {
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60 no-underline md:hover:underline"
-            href="/blogs"
+            href="/articles"
           >
-            Blogs
+            Articles
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60 no-underline md:hover:underline"
@@ -125,10 +125,10 @@ const Header = () => {
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60"
-            href="/blogs"
+            href="/articles"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Blogs
+            Articles
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60"

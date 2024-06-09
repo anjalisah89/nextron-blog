@@ -185,7 +185,7 @@ export const getFeaturedPosts = async () => {
   }
 
   const query = gql`
-    query GetFeaturedPost {
+  query GetFeaturedPost {
       posts(where: { featuredPost: true }) {
         author {
           name
@@ -199,6 +199,7 @@ export const getFeaturedPosts = async () => {
         title
         slug
         createdAt
+        excerpt
       }
     }
   `;

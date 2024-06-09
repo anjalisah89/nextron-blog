@@ -118,3 +118,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

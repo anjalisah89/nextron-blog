@@ -79,7 +79,7 @@ const FeaturedPosts = () => {
   );
 
   return (
-    <div className="mb-8">
+    <div className="lg:mb-8 mb-4">
       {featuredPosts ? (
         <Carousel
           infinite

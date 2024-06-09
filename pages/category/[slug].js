@@ -31,8 +31,16 @@ const CategoryPost = ({ posts }) => {
         <link rel="icon" href="/image/logo.svg" type="image/svg+xml" />
       </Head>
       <Header />
-      <div className="container mx-auto px-10 mb-8 mt-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="flex flex-col text-center w-full mb-5 mt-5">
+        <h2 className="text-xs text-pink-500 tracking-widest font-medium title-font mb-1">
+          Related Articles on
+        </h2>
+        <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+          {categoryName}
+        </h1>
+      </div>
+      <div className="container mx-auto lg:px-10 px-5 mt-4">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-12">
           <div className="col-span-1 lg:col-span-8">
             {posts.map((post, index) => (
               <PostCard key={index} post={post.node} />
