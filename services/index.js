@@ -186,9 +186,7 @@ export const getFeaturedPosts = async () => {
 
   const query = gql`
     query GetFeaturedPost {
-      posts(
-        where: { featuredPost: true }
-      ) {
+      posts(where: { featuredPost: true }) {
         author {
           name
           photo {
@@ -224,9 +222,7 @@ export const getResearchPosts = async () => {
 
   const query = gql`
     query GetFeaturedPost {
-      posts(
-        where: { researches_some: { slug: "research" } }
-      ) {
+      posts(where: { researches_some: { slug: "research" } }) {
         author {
           name
           photo {
@@ -293,5 +289,32 @@ export const getComments = async (slug) => {
   } catch (error) {
     console.error("GraphQL query error:", error);
     return null;
+  }
+};
+
+// Newsletter Mutation
+export const submitNewsletter = async (obj) => {
+  if (!graphqlAPI) {
+    console.error("GraphQL API endpoint is not defined");
+    return [];
+  }
+
+  try {
+    const response = await fetch("/api/newsletter", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to submit newsletter");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error submitting newsletter:", error);
+    return { error: "Error submitting newsletter" };
   }
 };

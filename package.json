@@ -18,7 +18,8 @@
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-multi-carousel": "^2.8.5"
+    "react-multi-carousel": "^2.8.5",
+    "sweetalert2": "^11.11.1"
   },
   "devDependencies": {
     "eslint": "^8",
