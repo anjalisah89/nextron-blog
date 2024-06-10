@@ -44,7 +44,7 @@ export default function Articles({ posts }) {
                 1 min Read
               </h2>
               <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
-                Latest Articles
+                Trending Articles
               </h1>
             </div>
             {posts.map((post, index) => (

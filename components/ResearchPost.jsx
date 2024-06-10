@@ -3,13 +3,13 @@ import Link from "next/link";
 import moment from "moment";
 import Image from "next/image";
 
-const FeaturedPost = ({ featuredPosts }) => {
+const ResearchPost = ({ researchPosts }) => {
   return (
     <section className="text-gray-600 body-font">
       <div className="container lg:px-10 px-5 mx-auto mt-4">
         <div className="flex flex-wrap -m-4 mb-4">
-          {featuredPosts &&
-            featuredPosts.map((post, index) => (
+          {researchPosts &&
+            researchPosts.map((post, index) => (
               <div key={index} className="p-4 lg:w-1/3 md:w-1/2 w-full">
                 <div className="h-full bg-gray-100 bg-opacity-75 pb-10 rounded-lg overflow-hidden text-center relative">
                   <div className="relative overflow-hidden shadow-md mb-6">
@@ -25,11 +25,25 @@ const FeaturedPost = ({ featuredPosts }) => {
                       />
                     ) : null}
                   </div>
-                  <div className="px-12 mt-12">
-                    <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+                  <div className="px-12 mt-8">
+                    <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto ">
+                      <Image
+                        unoptimized
+                        fetchpriority="high"
+                        alt={post.author.name}
+                        height={30}
+                        width={30}
+                        className="align-middle rounded-full"
+                        src={post.author.photo.url}
+                      />
+                      <p className="inline align-middle text-black ml-2 font-medium text-lg">
+                        {post.author.name ? post.author.name : "Anonymous"}
+                      </p>
+                    </div>
+                    <h2 className="tracking-widest text-xs title-font font-medium text-black mb-1 mt-2">
                       Published: {moment(post.createdAt).format("MMM DD, YYYY")}
                     </h2>
-                    <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
+                    <h1 className="title-font sm:text-2xl text-xl font-medium text-black mb-3 mt-3">
                       {post.title}
                     </h1>
                     <p className="leading-relaxed mb-3">
@@ -64,4 +78,4 @@ const FeaturedPost = ({ featuredPosts }) => {
   );
 };
 
-export default FeaturedPost;
+export default ResearchPost;

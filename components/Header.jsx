@@ -36,27 +36,27 @@ const Header = () => {
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60 no-underline md:hover:underline"
+            href="/"
+          >
+            About
+          </Link>
+          <Link
+            className="transition-colors hover:text-foreground/80 text-foreground/60 no-underline md:hover:underline"
             href="/articles"
           >
             Articles
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60 no-underline md:hover:underline"
-            href="/featured"
+            href="/research"
           >
-            Featured
+            Research
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60 no-underline md:hover:underline"
             href="/contact-us"
           >
             Contact
-          </Link>
-          <Link
-            className="transition-colors hover:text-foreground/80 text-foreground/60 no-underline md:hover:underline"
-            href="/research"
-          >
-            Research
           </Link>
         </nav>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
@@ -125,6 +125,13 @@ const Header = () => {
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60"
+            href="/"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            About
+          </Link>
+          <Link
+            className="transition-colors hover:text-foreground/80 text-foreground/60"
             href="/articles"
             onClick={() => setIsMobileMenuOpen(false)}
           >
@@ -132,10 +139,10 @@ const Header = () => {
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60"
-            href="/featured"
+            href="/research"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Featured
+            Research
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60"
@@ -143,13 +150,6 @@ const Header = () => {
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Contact
-          </Link>
-          <Link
-            className="transition-colors hover:text-foreground/80 text-foreground/60"
-            href="/research"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Research
           </Link>
         </div>
       )}

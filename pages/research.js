@@ -2,9 +2,27 @@ import React from "react";
 import Head from "next/head";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ResearchCard from "@/components/ResearchCard";
+import ResearchPost from "@/components/ResearchPost";
+import { useState, useEffect } from "react";
+import { getResearchPosts } from "@/services";
 
 const Research = () => {
+  const [researchPosts, setResearchPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchResearchPosts = async () => {
+      const result = await getResearchPosts();
+      // console.log("ResearchPosts", result);
+      if (result && result.length > 0) {
+        setResearchPosts(result);
+      } else {
+        console.error("No featured posts retrieved");
+      }
+    };
+
+    fetchResearchPosts();
+  }, []);
+
   return (
     <>
       <Head>
@@ -13,10 +31,17 @@ const Research = () => {
           name="description"
           content="Next Js Headless CMS GraphQL Blog App"
         />
-        <link rel="icon" href="/image/logo.svg" type="image/svg+xml" />
       </Head>
       <Header />
-      <ResearchCard />
+      <div className="flex flex-col text-center w-full lg:mb-8 mt-5">
+        <h2 className="text-xs text-pink-500 tracking-widest font-medium title-font mb-1">
+          Most Viewed
+        </h2>
+        <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+          Research Articles
+        </h1>
+      </div>
+      <ResearchPost researchPosts={researchPosts} />
       <Footer />
     </>
   );

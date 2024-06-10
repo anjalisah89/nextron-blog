@@ -185,8 +185,48 @@ export const getFeaturedPosts = async () => {
   }
 
   const query = gql`
-  query GetFeaturedPost {
-      posts(where: { featuredPost: true }) {
+    query GetFeaturedPost {
+      posts(
+        where: { featuredPost: true }
+      ) {
+        author {
+          name
+          photo {
+            url
+          }
+        }
+        featuredImage {
+          url
+        }
+        title
+        slug
+        createdAt
+        excerpt
+      }
+    }
+  `;
+
+  try {
+    const result = await request(graphqlAPI, query);
+    return result.posts;
+  } catch (error) {
+    console.error("Error fetching featured posts:", error);
+    return [];
+  }
+};
+
+// Research Posts Query
+export const getResearchPosts = async () => {
+  if (!graphqlAPI) {
+    console.error("GraphQL API endpoint is not defined");
+    return [];
+  }
+
+  const query = gql`
+    query GetFeaturedPost {
+      posts(
+        where: { researches_some: { slug: "research" } }
+      ) {
         author {
           name
           photo {
