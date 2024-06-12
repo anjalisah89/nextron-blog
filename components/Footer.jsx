@@ -19,12 +19,12 @@ const Footer = () => {
     const { email } = formData;
     if (!email) {
       setError(true);
-      Swal.fire("Error", "Email is required", "error");
+      Swal.fire("Oops", "Email is required");
       return;
     }
 
     if (!emailRegex.test(email)) {
-      Swal.fire("Error", "Please enter a valid email address", "error");
+      Swal.fire("Please enter a valid email address");
       return;
     }
 

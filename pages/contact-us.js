@@ -5,11 +5,16 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Swal from "sweetalert2";
+import { getcontactDetails } from "@/services";
 
 const Contact = () => {
   const [error, setError] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [formData, setFormData] = useState({ email: "", name: "", comment: "" });
+  const [formData, setFormData] = useState({
+    email: "",
+    name: "",
+    comment: "",
+  });
 
   const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
@@ -22,30 +27,35 @@ const Contact = () => {
     setError(false);
     const { email, name, comment } = formData;
 
+    // if (!email || !name || !comment) {
+    //   setError(true);
+    //   Swal.fire("Oops", "Please Enter Details", "error");
+    //   return;
+    // }
     if (!email) {
       setError(true);
-      Swal.fire("Error", "Email is required", "error");
+      Swal.fire("Ohh oh", "Email is required", "error");
       return;
     }
     if (!name) {
       setError(true);
-      Swal.fire("Error", "Name is required", "error");
+      Swal.fire("Hii there", "Please enter your name ");
       return;
     }
     if (!comment) {
       setError(true);
-      Swal.fire("Error", "Comment is required", "error");
+      Swal.fire("Please share your thoughts!");
       return;
     }
 
     if (!emailRegex.test(email)) {
-      Swal.fire("Error", "Please enter a valid email address", "error");
+      Swal.fire("Please enter a valid email address");
       return;
     }
 
-    const NewsObj = { email };
+    const contactDetails = { email, name, comment };
 
-    submitNewsletter(NewsObj)
+    getcontactDetails(contactDetails)
       .then((res) => {
         if (res.success) {
           setFormData({ email: "", name: "", comment: "" });
@@ -54,12 +64,16 @@ const Contact = () => {
             setShowSuccessMessage(false);
           }, 3000);
         } else {
-          Swal.fire("Error", res.message || "Failed to subscribe", "error");
+          Swal.fire(
+            "Error",
+            res.message || "Failed to submit contact details",
+            "error"
+          );
         }
       })
       .catch(() => {
         setError(true);
-        Swal.fire("Error", "Failed to submit newsletter", "error");
+        Swal.fire("Error", "Failed to submit contact details", "error");
       });
   };
 
@@ -92,7 +106,10 @@ const Contact = () => {
               <div className="flex flex-wrap -m-2">
                 <div className="p-2 w-1/2">
                   <div className="relative">
-                    <label htmlFor="name" className="leading-7 text-sm text-black">
+                    <label
+                      htmlFor="name"
+                      className="leading-7 text-sm text-black"
+                    >
                       Name
                     </label>
                     <input
@@ -107,7 +124,10 @@ const Contact = () => {
                 </div>
                 <div className="p-2 w-1/2">
                   <div className="relative">
-                    <label htmlFor="email" className="leading-7 text-sm text-black">
+                    <label
+                      htmlFor="email"
+                      className="leading-7 text-sm text-black"
+                    >
                       Email
                     </label>
                     <input
@@ -122,7 +142,10 @@ const Contact = () => {
                 </div>
                 <div className="p-2 w-full">
                   <div className="relative">
-                    <label htmlFor="comment" className="leading-7 text-sm text-black">
+                    <label
+                      htmlFor="comment"
+                      className="leading-7 text-sm text-black"
+                    >
                       Message
                     </label>
                     <textarea
@@ -135,9 +158,18 @@ const Contact = () => {
                   </div>
                 </div>
                 <div className="p-2 w-full">
-                  <button className="flex mx-auto text-white bg-pink-600 border-0 py-2 px-8 focus:outline-none hover:bg-pink-800 rounded text-lg">
+                  <button
+                    className="flex mx-auto text-white bg-pink-600 border-0 py-2 px-8 focus:outline-none hover:bg-pink-800 rounded text-lg"
+                    onClick={handleSubmit}
+                  >
                     Submit
                   </button>
+                  {showSuccessMessage && (
+                    <span className="text-xl float-right font-semibold mt-3 text-Black">
+                      Thank you for reaching out to us. We have received your
+                      message!!
+                    </span>
+                  )}
                 </div>
                 <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
                   <Link

@@ -308,13 +308,32 @@ export const submitNewsletter = async (obj) => {
       body: JSON.stringify(obj),
     });
 
-    if (!response.ok) {
-      throw new Error("Failed to submit newsletter");
-    }
-
     return await response.json();
   } catch (error) {
     console.error("Error submitting newsletter:", error);
     return { error: "Error submitting newsletter" };
+  }
+};
+
+// Contact Details Mutation
+export const getcontactDetails = async (obj) => {
+  if (!graphqlAPI) {
+    console.error("GraphQL API endpoint is not defined");
+    return [];
+  }
+
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error submitting contact details:", error);
+    return { error: "Error submitting contact details" };
   }
 };
