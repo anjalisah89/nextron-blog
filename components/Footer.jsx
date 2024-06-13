@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import { submitNewsletter } from "@/services";
 
 const Footer = () => {
-  const [error, setError] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [formData, setFormData] = useState({ email: "" });
 
@@ -15,10 +14,8 @@ const Footer = () => {
   };
 
   const handleSubmit = () => {
-    setError(false);
     const { email } = formData;
     if (!email) {
-      setError(true);
       Swal.fire("Oops", "Email is required");
       return;
     }
@@ -63,7 +60,7 @@ const Footer = () => {
                 htmlFor="footer-field"
                 className="leading-7 text-sm text-black"
               >
-                Enter your email
+               Subscribe for Weekly Updates!
               </label>
               <input
                 type="text"
@@ -88,17 +85,12 @@ const Footer = () => {
               Subscribe for the latest articles, reviews and tech insights
               straight to your inbox.
             </p>
-            {showSuccessMessage && (
-              <span className="text-xl float-right font-semibold mt-3 text-green-500">
-                Congratulations! You are subscribed to the newsletter.
-              </span>
-            )}
-            {error && (
-              <span className="text-xl float-right font-semibold mt-3 text-red-500">
-                Please enter a valid email address.
-              </span>
-            )}
           </div>
+          {showSuccessMessage && (
+              <span className="text-m float-right font-semibold mt-3 text-black">
+                Awesome! You are subscribed to the newsletter.
+              </span>
+            )}
           <span className="inline-flex lg:ml-auto lg:mt-0 mt-6 w-full justify-center md:justify-start md:w-auto">
             <Link href={"/"} className="text-black">
               <svg
@@ -163,7 +155,7 @@ const Footer = () => {
           <p className="text-black text-sm text-center sm:text-left">
             © 2024 Nextron Blog — Managed by Anjali |
             <Link
-              href="#"
+              href="https://github.com/anjalisah89"
               className="text-black ml-1"
               target="_blank"
               rel="noopener noreferrer"
