@@ -66,9 +66,7 @@ export default function Home({ posts }) {
               </h1>
               <p className="mb-8 leading-relaxed">
                 Become a part of the Nextron community! <br /> Follow us,
-                subscribe to our newsletter for updates and join the conversation in the
-                comments section. <br /> We value your thoughts and insights and
-                are excited to hear from you.
+                subscribe to our newsletter to stay updated. Join the conversation and share your thoughts in the comments section. We value your insights and excited to hear from you.
               </p>
               <div className="flex justify-center">
                 <Link href={"/research"}>

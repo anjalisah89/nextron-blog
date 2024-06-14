@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { submitComment } from "@/services";
+import Swal from "sweetalert2";
 
 const CommentsForm = ({ slug }) => {
   const [error, setError] = useState(false);
   const [localStorage, setLocalStorage] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [formData, setFormData] = useState({
-    name: null,
-    email: null,
-    comment: null,
+    name: "",
+    email: "",
+    comment: "",
     storeData: false,
   });
 
   useEffect(() => {
     setLocalStorage(window.localStorage);
-    const initalFormData = {
-      name: window.localStorage.getItem("name"),
-      email: window.localStorage.getItem("email"),
+    const initialFormData = {
+      name: window.localStorage.getItem("name") || "",
+      email: window.localStorage.getItem("email") || "",
       storeData:
         window.localStorage.getItem("name") ||
         window.localStorage.getItem("email"),
     };
-    setFormData(initalFormData);
+    setFormData(initialFormData);
   }, []);
+
+  const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
   const handleChange = (e) => {
     const { target } = e;
@@ -42,10 +45,31 @@ const CommentsForm = ({ slug }) => {
   const handleSubmit = () => {
     setError(false);
     const { name, email, comment, storeData } = formData;
-    if (!name || !email || !comment) {
+
+    if (!name) {
       setError(true);
+      Swal.fire("Error", "Please enter your name", "error");
       return;
     }
+
+    if (!email) {
+      setError(true);
+      Swal.fire("Error", "Email is required", "error");
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      setError(true);
+      Swal.fire("Error", "Please enter a valid email address", "error");
+      return;
+    }
+
+    if (!comment) {
+      setError(true);
+      Swal.fire("Error", "Please share your thoughts!", "error");
+      return;
+    }
+
     const commentObj = {
       name,
       email,
@@ -64,18 +88,19 @@ const CommentsForm = ({ slug }) => {
     submitComment(commentObj).then((res) => {
       if (res.createComment) {
         if (!storeData) {
-          formData.name = "";
-          formData.email = "";
+          setFormData({
+            ...formData,
+            name: "",
+            email: "",
+            comment: "",
+          });
         }
-        formData.comment = "";
-        setFormData((prevState) => ({
-          ...prevState,
-          ...formData,
-        }));
         setShowSuccessMessage(true);
         setTimeout(() => {
           setShowSuccessMessage(false);
-        }, 3000);
+        }, 5000);
+      } else {
+        Swal.fire("Error", res.message || "Failed to submit comment", "error");
       }
     });
   };
@@ -123,14 +148,13 @@ const CommentsForm = ({ slug }) => {
             value="true"
           />
           <label className="text-gray-500 cursor-pointer" htmlFor="storeData">
-            {" "}
             Save my name, email in this browser for the next time I comment.
           </label>
         </div>
       </div>
-      {error && (
+      {/* {error && (
         <p className="text-xs text-red-500">All fields are mandatory</p>
-      )}
+      )} */}
       <div className="mt-8">
         <button
           type="button"
@@ -139,9 +163,11 @@ const CommentsForm = ({ slug }) => {
         >
           Post Comment
         </button>
+      </div>
+      <div className="mt-8">
         {showSuccessMessage && (
-          <span className="text-xl float-right font-semibold mt-3 text-green-500">
-            Thanks!! Your Comment has been submitted for review
+          <span className="text-sm font-semibold text-black">
+            Thanks!! Your Comment has been submitted for review.
           </span>
         )}
       </div>

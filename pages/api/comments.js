@@ -4,6 +4,17 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 // https://graphql.org/graphql-js/mutations-and-input-types/
 
 export default async function asynchandler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Only POST requests allowed" });
+  }
+
+  const { email, name, comment } = req.body;
+  if (!email || !name || !comment) {
+    return res
+      .status(400)
+      .json({ message: "Name, email, and comment are required" });
+  }
+
   const graphQLClient = new GraphQLClient(graphqlAPI, {
     headers: {
       authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,

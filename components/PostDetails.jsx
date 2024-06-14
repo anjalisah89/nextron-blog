@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import moment from "moment";
 import Image from "next/image";
 import Prism from "prismjs";
@@ -12,11 +12,9 @@ const PostDetail = ({ post }) => {
       if (obj.bold) {
         modifiedText = <b key={index}>{text}</b>;
       }
-
       if (obj.italic) {
         modifiedText = <em key={index}>{text}</em>;
       }
-
       if (obj.underline) {
         modifiedText = <u key={index}>{text}</u>;
       }
@@ -26,42 +24,41 @@ const PostDetail = ({ post }) => {
       case "heading-three":
         return (
           <h3 key={index} className="text-xl font-semibold mb-4">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
-            ))}
+            {modifiedText}
           </h3>
         );
       case "paragraph":
         return (
           <p key={index} className="mb-8">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
-            ))}
+            {modifiedText}
           </p>
         );
       case "heading-four":
         return (
           <h4 key={index} className="text-md font-semibold mb-4">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
-            ))}
+            {modifiedText}
           </h4>
         );
       case "image":
         return (
-          <Image
-            unoptimized
-            key={index}
-            alt={obj.title}
-            height={obj.height}
-            width={obj.width}
-            src={obj.src}
-          />
+          <div key={index} className="flex justify-center mb-8">
+            <Image
+              unoptimized
+              alt={obj.title || "Image"}
+              height={obj.height || 400}
+              width={obj.width || 800}
+              src={obj.src}
+              className="rounded"
+            />
+          </div>
         );
       case "code-block":
+        // Ensure text content matches server and client
         return (
           <pre key={index} className="bg-gray-100 p-4 rounded-md mb-4">
-            <code className="language-javascript">{modifiedText}</code>
+            <code className="language-javascript">
+              {text}
+            </code>
           </pre>
         );
       default:
@@ -69,38 +66,43 @@ const PostDetail = ({ post }) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     Prism.highlightAll();
   }, []);
+
+  // Ensuring that post is fully loaded before rendering the component
+  if (!post) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8 lg:mt-4 mt-4">
       <div className="relative overflow-hidden shadow-md mb-6">
-        {post?.featuredImage?.url ? (
+        {post?.featuredImage?.url && (
           <Image
             unoptimized
-            src={post?.featuredImage?.url}
-            alt=""
+            src={post.featuredImage.url}
+            alt="Featured Image"
             height={60}
             width={60}
             className="object-top h-full w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
           />
-        ) : null}
+        )}
       </div>
       <div className="px-4 lg:px-0">
         <div className="flex items-center mb-8 w-full">
           <div className="hidden md:flex items-center justify-center lg:mb-0 lg:w-auto mr-8">
-            {post?.author?.photo?.url ? (
+            {post?.author?.photo?.url && (
               <Image
-                alt={post?.author?.name || "Author"}
+                alt={post.author.name || "Author"}
                 height={30}
                 width={30}
                 className="align-middle rounded-full"
-                src={post?.author?.photo?.url}
+                src={post.author.photo.url}
               />
-            ) : null}
+            )}
             <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
-              {post.author.name ? post.author.name : "Anonymous"}
+              {post.author.name || "Anonymous"}
             </p>
           </div>
           <div className="font-medium text-gray-700">
@@ -124,14 +126,18 @@ const PostDetail = ({ post }) => {
           </div>
         </div>
         <h1 className="mb-8 text-3xl font-semibold">
-          {post?.title ? post?.title : "Oops!! Something went wrong."}
+          {post?.title || "Oops!! Something went wrong."}
         </h1>
         {post?.content?.raw?.children.map((typeObj, index) => {
           const children = typeObj.children.map((item, itemindex) =>
             getContentFragment(itemindex, item.text, item, item.type)
           );
 
-          return getContentFragment(index, children, typeObj, typeObj.type);
+          return (
+            <React.Fragment key={index}>
+              {getContentFragment(index, children, typeObj, typeObj.type)}
+            </React.Fragment>
+          );
         })}
       </div>
     </div>

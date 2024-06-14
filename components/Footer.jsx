@@ -4,14 +4,19 @@ import Swal from "sweetalert2";
 import { submitNewsletter } from "@/services";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [formData, setFormData] = useState({ email: "" });
 
   const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevFormData => ({
+        ...prevFormData,
+        [name]: value
+    }));
+};
 
   const handleSubmit = () => {
     const { email } = formData;
@@ -39,7 +44,7 @@ const Footer = () => {
           // );
           setTimeout(() => {
             setShowSuccessMessage(false);
-          }, 3000);
+          }, 5000);
         } else {
           Swal.fire("Error", res.message || "Failed to subscribe", "error");
         }
@@ -58,9 +63,9 @@ const Footer = () => {
             <div className="relative sm:w-64 w-40 sm:mr-4 mr-2">
               <label
                 htmlFor="footer-field"
-                className="leading-7 text-sm text-black"
+                className="leading-7 text-black text-lg"
               >
-               Subscribe for Weekly Updates!
+                Newsletter
               </label>
               <input
                 type="text"
@@ -87,10 +92,10 @@ const Footer = () => {
             </p>
           </div>
           {showSuccessMessage && (
-              <span className="text-m float-right font-semibold mt-3 text-black">
-                Awesome! You are subscribed to the newsletter.
-              </span>
-            )}
+            <span className="text-m float-right font-semibold mt-3 text-black">
+              Awesome! You are subscribed to the newsletter.
+            </span>
+          )}
           <span className="inline-flex lg:ml-auto lg:mt-0 mt-6 w-full justify-center md:justify-start md:w-auto">
             <Link href={"/"} className="text-black">
               <svg
@@ -153,7 +158,7 @@ const Footer = () => {
       <div className="bg-gray-100">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className="text-black text-sm text-center sm:text-left">
-            © 2024 Nextron Blog — Managed by Anjali |
+          © {currentYear} Nextron Blog — Managed by Anjali |
             <Link
               href="https://github.com/anjalisah89"
               className="text-black ml-1"

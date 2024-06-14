@@ -38,8 +38,22 @@ const Research = () => {
           Most Viewed
         </h2>
         <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
-          Research Articles
+          Explore Our Research Articles
         </h1>
+        <p className="leading-relaxed px-12 mt-4 text-center">
+          Research articles on coding and programming technologies explore
+          advancements, methodologies and innovations in software development.
+          Topics include new programming languages, efficient algorithms,
+          software engineering practices like agile and DevOps, cybersecurity,
+          AI applications, JavaScript programming, Docker for containerization,
+          MongoDB as a NoSQL database, React library for UI development &
+          NextJS, AWS cloud services, Cloud Computing, frontend-backend
+          integration techniques, GraphQL API implementation, user experience
+          design, educational methods and ethical considerations. These articles
+          are essential for researchers, practitioners and educators in
+          understanding and advancing the field, often published in academic
+          journals and conferences.
+        </p>
       </div>
       <ResearchPost researchPosts={researchPosts} />
       <Footer />

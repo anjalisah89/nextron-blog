@@ -62,7 +62,7 @@ const Contact = () => {
           setShowSuccessMessage(true);
           setTimeout(() => {
             setShowSuccessMessage(false);
-          }, 3000);
+          }, 5000);
         } else {
           Swal.fire(
             "Error",

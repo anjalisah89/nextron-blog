@@ -6,6 +6,20 @@ import Image from "next/image";
 const ResearchPost = ({ researchPosts }) => {
   return (
     <section className="text-gray-600 body-font">
+      <div className="flex w-full justify-center items-end ">
+        <div className="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left mb-8">
+          <input
+            type="text"
+            id="hero-field"
+            name="hero-field"
+            placeholder="Discover more..."
+            className="w-full bg-white bg-opacity-50 rounded focus:ring-2 focus:ring-pink-200 focus:bg-transparent border border-gray-300 focus:border-pink-500 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+          />
+        </div>
+        <button className="inline-flex text-white bg-pink-500 border-0 mb-8 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">
+          Search
+        </button>
+      </div>
       <div className="container lg:px-10 px-5 mx-auto mt-4">
         <div className="flex flex-wrap -m-4 mb-4">
           {researchPosts &&
