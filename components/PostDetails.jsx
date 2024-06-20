@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import moment from "moment";
 import Image from "next/image";
 import Prism from "prismjs";
-import "prismjs/themes/prism.css";
+import "prismjs/themes/prism-tomorrow.css";
+// import "prismjs/themes/prism.css";
+// import "prismjs/themes/prism-okaidia.css";
+// import "prismjs/themes/prism-funky.css";
+// import "prismjs/themes/prism-coy.css";
+// import "prismjs/themes/prism-solarized-dark.css";
 
 const PostDetail = ({ post }) => {
   const getContentFragment = (index, text, obj, type) => {
@@ -19,6 +24,17 @@ const PostDetail = ({ post }) => {
         modifiedText = <u key={index}>{text}</u>;
       }
     }
+
+    const copyToClipboard = (text) => {
+      navigator.clipboard.writeText(text).then(
+        () => {
+          console.log("Copied to clipboard successfully!");
+        },
+        (err) => {
+          console.error("Failed to copy text to clipboard:", err);
+        }
+      );
+    };
 
     switch (type) {
       case "heading-three":
@@ -53,13 +69,18 @@ const PostDetail = ({ post }) => {
           </div>
         );
       case "code-block":
-        // Ensure text content matches server and client
         return (
-          <pre key={index} className="bg-gray-100 p-4 rounded-md mb-4">
-            <code className="language-javascript">
-              {text}
-            </code>
-          </pre>
+          <div key={index} className="relative rounded-md ">
+            <button
+              onClick={() => copyToClipboard(text)}
+              className="absolute top-5 right-5 bg-pink-600 hover:bg-blue-800 text-white py-1 px-2 rounded-md"
+            >
+              Copy
+            </button>
+            <pre>
+              <code className="language-javascript">{text}</code>
+            </pre>
+          </div>
         );
       default:
         return modifiedText;
@@ -70,7 +91,6 @@ const PostDetail = ({ post }) => {
     Prism.highlightAll();
   }, []);
 
-  // Ensuring that post is fully loaded before rendering the component
   if (!post) {
     return <div>Loading...</div>;
   }
