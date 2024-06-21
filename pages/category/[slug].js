@@ -7,6 +7,7 @@ import Loader from "@/components/Loader";
 import Categories from "@/components/Categories";
 import PostCard from "@/components/PostCard";
 import Header from "@/components/Header";
+import TopButton from "@/components/TopButton";
 import Footer from "@/components/Footer";
 
 const CategoryPost = ({ posts }) => {
@@ -53,6 +54,7 @@ const CategoryPost = ({ posts }) => {
           </div>
         </div>
       </div>
+      <TopButton />
       <Footer />
     </>
   );

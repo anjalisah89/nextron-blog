@@ -8,6 +8,7 @@ import PostWidget from "@/components/PostWidget";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { getPosts } from "@/services";
 import FeaturedPosts from "@/components/FeaturedPosts";
+import TopButton from "@/components/TopButton";
 import Footer from "@/components/Footer";
 
 export default function Home({ posts }) {
@@ -112,6 +113,7 @@ export default function Home({ posts }) {
           </div>
         </div>
       </div>
+      <TopButton />
       <Footer />
     </>
   );

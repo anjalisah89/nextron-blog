@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Header from "@/components/Header";
+import TopButton from "@/components/TopButton";
 import Footer from "@/components/Footer";
 import ResearchPost from "@/components/ResearchPost";
 import { useState, useEffect } from "react";
@@ -56,6 +57,7 @@ const Research = () => {
         </p>
       </div>
       <ResearchPost researchPosts={researchPosts} />
+      <TopButton />
       <Footer />
     </>
   );

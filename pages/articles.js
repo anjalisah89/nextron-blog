@@ -8,6 +8,7 @@ import Loader from "@/components/Loader";
 import { useRouter } from "next/router";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { getPosts } from "@/services";
+import TopButton from "@/components/TopButton";
 import Footer from "@/components/Footer";
 
 export default function Articles({ posts }) {
@@ -59,6 +60,7 @@ export default function Articles({ posts }) {
           </div>
         </div>
       </div>
+      <TopButton />
       <Footer />
     </>
   );

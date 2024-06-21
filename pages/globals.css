@@ -124,3 +124,21 @@ a {
   justify-content: center;
   align-items: center;
 }
+
+.go-to-top-button {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 1000;
+}
+.go-to-top {
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+.go-to-top:hover {
+  opacity: 0.8;
+}

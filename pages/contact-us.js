@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
+import TopButton from "@/components/TopButton";
 import Footer from "@/components/Footer";
 import Swal from "sweetalert2";
 import { getcontactDetails } from "@/services";
@@ -202,6 +203,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
+      <TopButton />
       <Footer />
     </>
   );
