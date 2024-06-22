@@ -11,9 +11,18 @@ import Author from "@/components/Author";
 import CommentsForm from "@/components/CommentsForm";
 import Comments from "@/components/Comments";
 import TopButton from "@/components/TopButton";
+import Loader from "@/components/Loader";
 import Footer from "@/components/Footer";
 
 const PostDetails = ({ post }) => {
+  if (!post) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <>
       <Head>

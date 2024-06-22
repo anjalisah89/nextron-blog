@@ -17,6 +17,7 @@ export default function Articles({ posts }) {
   if (router.isFallback) {
     return <Loader />;
   }
+  
   return (
     <>
       <Head>

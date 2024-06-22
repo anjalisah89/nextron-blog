@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import TopButton from "@/components/TopButton";
 import Footer from "@/components/Footer";
 import ResearchPost from "@/components/ResearchPost";
+import Loader from "@/components/Loader";
 import { useState, useEffect } from "react";
 import { getResearchPosts } from "@/services";
 
@@ -23,6 +24,14 @@ const Research = () => {
 
     fetchResearchPosts();
   }, []);
+
+  if (!researchPosts) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <>

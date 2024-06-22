@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import Image from "next/image";
 import Prism from "prismjs";
@@ -11,6 +11,21 @@ import "prismjs/themes/prism-tomorrow.css";
 
 const PostDetail = ({ post }) => {
   const getContentFragment = (index, text, obj, type) => {
+    const [copyStatus, setCopyStatus] = useState("");
+
+    const copyToClipboard = (text) => {
+      navigator.clipboard.writeText(text).then(
+        () => {
+          console.log("Copied to clipboard successfully!");
+          setCopyStatus("Copied");
+          setTimeout(() => setCopyStatus(""), 3000); 
+        },
+        (err) => {
+          console.error("Failed to copy text to clipboard:", err);
+        }
+      );
+    };
+
     let modifiedText = text;
 
     if (obj) {
@@ -24,17 +39,6 @@ const PostDetail = ({ post }) => {
         modifiedText = <u key={index}>{text}</u>;
       }
     }
-
-    const copyToClipboard = (text) => {
-      navigator.clipboard.writeText(text).then(
-        () => {
-          console.log("Copied to clipboard successfully!");
-        },
-        (err) => {
-          console.error("Failed to copy text to clipboard:", err);
-        }
-      );
-    };
 
     switch (type) {
       case "heading-three":
@@ -70,12 +74,12 @@ const PostDetail = ({ post }) => {
         );
       case "code-block":
         return (
-          <div key={index} className="relative rounded-md ">
+          <div key={index} className="relative rounded-md">
             <button
               onClick={() => copyToClipboard(text)}
               className="absolute top-5 right-5 bg-pink-600 hover:bg-blue-800 text-white py-1 px-2 rounded-md"
             >
-              Copy
+              {copyStatus || "Copy"}
             </button>
             <pre>
               <code className="language-javascript">{text}</code>
@@ -90,10 +94,6 @@ const PostDetail = ({ post }) => {
   useEffect(() => {
     Prism.highlightAll();
   }, []);
-
-  if (!post) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8 lg:mt-4 mt-4">

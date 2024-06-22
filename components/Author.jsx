@@ -16,7 +16,7 @@ const Author = ({ author }) => (
       ) : null}
     </div>
     <h3 className="text-white mt-4 mb-4 text-xl font-bold">
-      {author.name ? author?.name : "Anonymous"}
+      {author?.name ? author?.name : "Anonymous"}
     </h3>
     <p className="text-white text-ls">
       {author.bio ? author?.bio : "No info about this author"}
