@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 import Image from "next/image";
 import Prism from "prismjs";
@@ -10,22 +10,22 @@ import "prismjs/themes/prism-tomorrow.css";
 // import "prismjs/themes/prism-solarized-dark.css";
 
 const PostDetail = ({ post }) => {
+  const [copyStatus, setCopyStatus] = useState("");
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopyStatus("Copied");
+
+      setTimeout(() => {
+        setCopyStatus("");
+      }, 3000);
+    } catch (err) {
+      console.error("Failed to copy text to clipboard:", err);
+      setCopyStatus("Copy failed");
+    }
+  };
+
   const getContentFragment = (index, text, obj, type) => {
-    const [copyStatus, setCopyStatus] = useState("");
-
-    const copyToClipboard = (text) => {
-      navigator.clipboard.writeText(text).then(
-        () => {
-          console.log("Copied to clipboard successfully!");
-          setCopyStatus("Copied");
-          setTimeout(() => setCopyStatus(""), 3000); 
-        },
-        (err) => {
-          console.error("Failed to copy text to clipboard:", err);
-        }
-      );
-    };
-
     let modifiedText = text;
 
     if (obj) {
@@ -79,7 +79,7 @@ const PostDetail = ({ post }) => {
               onClick={() => copyToClipboard(text)}
               className="absolute top-5 right-5 bg-pink-600 hover:bg-blue-800 text-white py-1 px-2 rounded-md"
             >
-              {copyStatus || "Copy"}
+              {copyStatus === "Copied" ? "Copied!" : "Copy"}
             </button>
             <pre>
               <code className="language-javascript">{text}</code>
