@@ -67,7 +67,9 @@ export default function Home({ posts }) {
               </h1>
               <p className="mb-8 leading-relaxed">
                 Become a part of the Nextron community! <br /> Follow us,
-                subscribe to our newsletter to stay updated. Join the conversation and share your thoughts in the comments section. We value your insights and excited to hear from you.
+                subscribe to our newsletter to stay updated. Join the
+                conversation and share your thoughts in the comments section. We
+                value your insights and excited to hear from you.
               </p>
               <div className="flex justify-center">
                 <Link href={"/research"}>
@@ -153,31 +155,3 @@ export async function getStaticProps() {
     };
   }
 }
-
-export const submitComment = async (obj) => {
-  const result = await fetch("/api/comments", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(obj),
-  });
-
-  return result.json();
-};
-
-export const getComments = async (slug) => {
-  const query = gql`
-    query GetComments($slug: String!) {
-      comments(where: { post: { slug: $slug } }) {
-        name
-        createdAt
-        comment
-      }
-    }
-  `;
-
-  const result = await request(graphqlAPI, query, { slug });
-
-  return result.comments;
-};

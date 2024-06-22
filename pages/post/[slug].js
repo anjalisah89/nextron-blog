@@ -4,6 +4,7 @@ import { getPosts, getPostDetails } from "@/services";
 import Head from "next/head";
 import Header from "@/components/Header";
 import PostDetail from "@/components/PostDetails";
+import AdjacentPosts from "@/components/AdjacentPosts";
 import Categories from "@/components/Categories";
 import PostWidget from "@/components/PostWidget";
 import Author from "@/components/Author";
@@ -37,6 +38,9 @@ const PostDetails = ({ post }) => {
           <div className="col-span-1 lg:col-span-8">
             <PostDetail post={post} />
             {post?.author ? <Author author={post.author} /> : null}
+            {post?.slug ? (
+              <AdjacentPosts slug={post.slug} createdAt={post.createdAt} />
+            ) : null}
             {post?.slug ? <CommentsForm slug={post.slug} /> : null}
             {post?.slug ? <Comments slug={post.slug} /> : null}
           </div>
