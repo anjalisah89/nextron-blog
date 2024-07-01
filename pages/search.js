@@ -1,6 +1,11 @@
-import React from "react";
+import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import Header from "@/components/Header";
+import Categories from "@/components/Categories";
+import PostWidget from "@/components/PostWidget";
+import TopButton from "@/components/TopButton";
+import Footer from "@/components/Footer";
 import { useRouter } from "next/router";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
@@ -9,52 +14,75 @@ const Search = ({ posts }) => {
   const { s } = router.query;
 
   return (
-    <div>
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-10 mx-auto">
-          <div className="flex flex-wrap w-full mb-20">
-            <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
-              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-                Search Results For {'"'}
-                {s}
-                {'"'}
-              </h1>
-              <div className="h-1 w-20 bg-pink-500 rounded"></div>
-            </div>
-          </div>
-          <div className="flex flex-wrap -m-4">
-            {posts.length > 0 ? (
-              posts.map((post) => (
-                <div className="xl:w-1/4 md:w-1/2 p-4" key={post.id}>
-                  <div className="bg-gray-100 p-6 rounded-lg">
-                    <Link href={`/post/${post.slug}`}>
-                      <Image
-                        className="h-40 rounded w-full object-cover object-center mb-6"
-                        src={post.featuredImage.url}
-                        alt={post.title || "Image"}
-                        width={720}
-                        height={400}
-                      />
-                    </Link>
-                    <h3 className="tracking-widest text-pink-500 text-xs font-medium title-font">
-                      {post.categories.name}
-                    </h3>
-                    <Link href={`/post/${post.slug}`}>
-                      <h2 className="text-lg text-gray-900 font-medium title-font mb-4">
-                        {post.title}
-                      </h2>
-                    </Link>
-                    <p className="leading-relaxed text-base">{post.excerpt}</p>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p>No posts found</p>
-            )}
+    <>
+      <Head>
+        <title>Search Posts</title>
+        <meta
+          name="description"
+          content="Next Js Headless CMS GraphQL Blog App"
+        />
+        <link rel="icon" href="/image/logo.svg" type="image/svg+xml" />
+      </Head>
+      <Header />
+      <div className="lg:grid lg:grid-cols-12 lg:gap-12 px-5">
+        <div className="lg:col-span-4 col-span-1">
+          <div className="lg:sticky relative top-8">
+            <PostWidget />
+            <Categories />
           </div>
         </div>
-      </section>
-    </div>
+        <div className="lg:col-span-8 col-span-1 mt-4 rounded-lg">
+          <section className="text-gray-600 body-font">
+            <div className="container px-5 py-10 mx-auto">
+              <div className="flex flex-wrap w-full mb-20">
+                <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
+                  <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
+                    Search Results For {'"'}
+                    {s}
+                    {'"'}
+                  </h1>
+                  <div className="h-1 w-20 bg-pink-500 rounded"></div>
+                </div>
+              </div>
+              <div className="flex flex-wrap -m-4">
+                {posts.length > 0 ? (
+                  posts.map((post) => (
+                    <div className="xl:w-1/4 md:w-1/2 p-4" key={post.id}>
+                      <div className="bg-gray-100 p-6 rounded-lg">
+                        <Link href={`/post/${post.slug}`}>
+                          <Image
+                            className="h-40 rounded w-full object-cover object-center mb-6"
+                            src={post.featuredImage.url}
+                            alt={post.title || "Image"}
+                            width={720}
+                            height={400}
+                          />
+                        </Link>
+                        <h3 className="tracking-widest text-pink-500 text-xs font-medium title-font">
+                          {post.categories.name}
+                        </h3>
+                        <Link href={`/post/${post.slug}`}>
+                          <h2 className="text-lg text-gray-900 font-medium title-font mb-4">
+                            {post.title}
+                          </h2>
+                        </Link>
+                        <p className="leading-relaxed text-base">
+                          {post.excerpt}
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p>No posts found</p>
+                )}
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <TopButton />
+      <Footer />
+    </>
   );
 };
 

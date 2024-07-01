@@ -74,33 +74,33 @@ const Header = () => {
         </nav>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="w-full flex-1 md:w-auto md:flex-none relative mr-2">
-          <form
-      action="#"
-      method="GET"
-      className="flex items-center justify-center relative"
-      onSubmit={handleSearchSubmit}
-    >
-      <input
-        type="text"
-        name="search"
-        placeholder="Search..."
-        onChange={handleSearch}
-        value={searchQuery}
-        className="bg-background text-sm text-muted-foreground border border-input rounded-[0.5rem] px-4 py-2 focus:outline-none focus:ring focus:border-accent w-full shadow-none sm:pr-12 md:w-40 lg:w-64"
-      />
-      <button
-        type="submit"
-        className="bg-accent hover:bg-accent-hover text-accent-foreground px-2 py-2 rounded-r-[0.5rem] ml-[-1px] absolute right-0 top-0 bottom-0"
-      >
-        <Image
-          src="/image/search.svg"
-          className="h-6 w-6"
-          width={24}
-          height={24}
-          alt="Search"
-        />
-      </button>
-    </form>
+            <form
+              action="#"
+              method="GET"
+              className="flex items-center justify-center relative"
+              onSubmit={handleSearchSubmit}
+            >
+              <input
+                type="text"
+                name="search"
+                placeholder="Search..."
+                onChange={handleSearch}
+                value={searchQuery}
+                className="bg-background text-sm text-muted-foreground border border-input rounded-[0.5rem] px-4 py-2 focus:outline-none focus:ring focus:border-accent w-full shadow-none sm:pr-12 md:w-40 lg:w-64"
+              />
+              <button
+                type="submit"
+                className="bg-accent hover:bg-accent-hover text-accent-foreground px-2 py-2 rounded-r-[0.5rem] ml-[-1px] absolute right-0 top-0 bottom-0"
+              >
+                <Image
+                  src="/image/search.svg"
+                  className="h-6 w-6 rounded-[0.5rem]"
+                  width={24}
+                  height={24}
+                  alt="Search"
+                />
+              </button>
+            </form>
           </div>
           <nav className="hidden md:flex items-center">
             <Link
