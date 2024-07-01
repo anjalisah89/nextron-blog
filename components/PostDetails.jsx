@@ -114,7 +114,7 @@ const PostDetail = ({ post }) => {
           <div className="hidden md:flex items-center justify-center lg:mb-0 lg:w-auto mr-8">
             {post?.author?.photo?.url && (
               <Image
-                alt={post.author.name || "Author"}
+                alt={post?.author?.name || "Author"}
                 height={30}
                 width={30}
                 className="align-middle rounded-full"
@@ -122,7 +122,7 @@ const PostDetail = ({ post }) => {
               />
             )}
             <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
-              {post.author.name || "Anonymous"}
+              {post?.author?.name || "Anonymous"}
             </p>
           </div>
           <div className="font-medium text-gray-700">

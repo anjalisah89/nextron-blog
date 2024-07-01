@@ -7,6 +7,7 @@ import PostWidget from "@/components/PostWidget";
 import TopButton from "@/components/TopButton";
 import Footer from "@/components/Footer";
 import { useRouter } from "next/router";
+import { SEARCH_QUERY } from "@/services";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 const Search = ({ posts }) => {
@@ -33,9 +34,9 @@ const Search = ({ posts }) => {
         </div>
         <div className="lg:col-span-8 col-span-1 mt-4 rounded-lg">
           <section className="text-gray-600 body-font">
-            <div className="container px-5 py-10 mx-auto">
-              <div className="flex flex-wrap w-full mb-20">
-                <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
+            <div className="container px-5 mx-auto">
+              <div className="flex flex-wrap w-full mb-10">
+                <div className="w-full mb-6 lg:mb-0">
                   <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
                     Search Results For {'"'}
                     {s}
@@ -46,8 +47,11 @@ const Search = ({ posts }) => {
               </div>
               <div className="flex flex-wrap -m-4">
                 {posts.length > 0 ? (
-                  posts.map((post) => (
-                    <div className="xl:w-1/4 md:w-1/2 p-4" key={post.id}>
+                  posts.map((post, index) => (
+                    <div
+                      className="xl:w-1/2 md:w-1/2 p-4"
+                      key={post.id || index}
+                    >
                       <div className="bg-gray-100 p-6 rounded-lg">
                         <Link href={`/post/${post.slug}`}>
                           <Image
@@ -67,13 +71,16 @@ const Search = ({ posts }) => {
                           </h2>
                         </Link>
                         <p className="leading-relaxed text-base">
-                          {post.excerpt}
+                          {post.excerpt.split(" ").slice(0, 10).join(" ") +
+                            (post.excerpt.split(" ").length > 10 ? "..." : "")}
                         </p>
                       </div>
                     </div>
                   ))
                 ) : (
-                  <p>No posts found</p>
+                  <p className="font-medium ml-5 mb-2 text-gray-900">
+                    No posts found!!
+                  </p>
                 )}
               </div>
             </div>
@@ -104,22 +111,6 @@ export async function getServerSideProps(context) {
   });
 
   const searchQuery = context.query.s || "";
-
-  const SEARCH_QUERY = gql`
-    query SearchQuery($search: String) {
-      posts(where: { _search: $search }) {
-        slug
-        title
-        excerpt
-        featuredImage {
-          url
-        }
-        categories {
-          name
-        }
-      }
-    }
-  `;
 
   try {
     const { data } = await client.query({

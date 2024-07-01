@@ -49,7 +49,7 @@ const Header = () => {
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60 no-underline md:hover:underline"
-            href="/"
+            href="/about"
           >
             About
           </Link>
@@ -141,7 +141,7 @@ const Header = () => {
           </Link>
           <Link
             className="transition-colors hover:text-foreground/80 text-foreground/60"
-            href="/"
+            href="/about"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             About

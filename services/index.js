@@ -373,3 +373,21 @@ export const getcontactDetails = async (obj) => {
     return { error: "Error submitting contact details" };
   }
 };
+
+// Search Query
+
+export const SEARCH_QUERY = gql`
+  query SearchQuery($search: String) {
+    posts(where: { _search: $search }) {
+      slug
+      title
+      excerpt
+      featuredImage {
+        url
+      }
+      categories {
+        name
+      }
+    }
+  }
+`;
