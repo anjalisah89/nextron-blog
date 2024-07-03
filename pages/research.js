@@ -50,7 +50,7 @@ const Research = () => {
         <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
           Explore Our Research Articles
         </h1>
-        <p className="leading-relaxed px-12 mt-4 text-center">
+        <p className="leading-relaxed px-12 mt-4 text-start">
           Research articles on coding and programming technologies explore
           advancements, methodologies and innovations in software development.
           Topics include new programming languages, efficient algorithms,
