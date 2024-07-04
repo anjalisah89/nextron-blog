@@ -53,7 +53,7 @@ const PostDetails = ({ post }) => {
             {post?.slug ? <CommentsForm slug={post.slug} /> : null}
             {post?.slug ? <Comments slug={post.slug} /> : null}
           </div>
-          <div className="col-span-1 lg:col-span-4">
+          <div className="col-span-1 lg:col-span-4 lg:mb-4 mb-16">
             <div className="relative lg:sticky top-8">
               <PostWidget />
               <Categories />

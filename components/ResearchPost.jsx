@@ -30,8 +30,8 @@ const ResearchPost = ({ researchPosts }) => {
   };
 
   return (
-    <section className="text-gray-600 body-font">
-      <div className="flex w-full justify-center items-end mb-10 mt-5">
+    <section className="text-gray-600 body-font py-5">
+      <div className="flex w-full justify-center items-end mb-12">
         <div className="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
           <input
             type="text"

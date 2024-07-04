@@ -36,7 +36,7 @@ export default function Home({ posts }) {
                 into the ever-evolving world of innovation and discovery.
               </p>
               <div className="flex justify-center gap-2">
-                <Link href={"/"}>
+                <Link href={"/about"}>
                   <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">
                     Get Started
                   </span>
@@ -107,7 +107,7 @@ export default function Home({ posts }) {
                 <PostCard key={index} post={post.node} />
               ))}
           </div>
-          <div className="lg:col-span-4 col-span-1">
+          <div className="lg:col-span-4 col-span-1 lg:mb-4 mb-16">
             <div className="lg:sticky relative top-8">
               <PostWidget />
               <Categories />

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { getCategory, getCategoryPost } from "@/services";
 import Loader from "@/components/Loader";
+import PostWidget from "@/components/PostWidget";
 import Categories from "@/components/Categories";
 import PostCard from "@/components/PostCard";
 import Header from "@/components/Header";
@@ -32,7 +33,7 @@ const CategoryPost = ({ posts }) => {
         <link rel="icon" href="/image/logo.svg" type="image/svg+xml" />
       </Head>
       <Header />
-      <div className="flex flex-col text-center w-full mb-5 mt-5">
+      <div className="flex flex-col text-center w-full mt-5">
         <h2 className="text-xs text-pink-500 tracking-widest font-medium title-font mb-1">
           Related Articles on
         </h2>
@@ -40,15 +41,18 @@ const CategoryPost = ({ posts }) => {
           {categoryName}
         </h1>
       </div>
-      <div className="container mx-auto lg:px-10 px-5 mt-4">
-        <div className="lg:grid lg:grid-cols-12 lg:gap-12">
+      <div className="container mx-auto lg:px-10 px-5">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-12 lg:mt-8">
           <div className="col-span-1 lg:col-span-8">
-            {posts.map((post, index) => (
-              <PostCard key={index} post={post.node} />
-            ))}
+            <div className="mt-4">
+              {posts.map((post, index) => (
+                <PostCard key={index} post={post.node} />
+              ))}
+            </div>
           </div>
-          <div className="col-span-1 lg:col-span-4">
+          <div className="col-span-1 lg:col-span-4 lg:mb-4 mb-16">
             <div className="relative lg:sticky top-8">
+              <PostWidget />
               <Categories />
             </div>
           </div>

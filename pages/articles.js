@@ -17,7 +17,7 @@ export default function Articles({ posts }) {
   if (router.isFallback) {
     return <Loader />;
   }
-  
+
   return (
     <>
       <Head>
@@ -40,12 +40,12 @@ export default function Articles({ posts }) {
         </div>
         <FeaturedPosts />
         <div className="lg:grid lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-8 col-span-1 mt-4 rounded-lg">
+          <div className="lg:col-span-8 col-span-1 lg:mt-4 mt-8 rounded-lg">
             <div className="flex flex-col text-center w-full mb-5">
               <h2 className="text-xs text-pink-500 tracking-widest font-medium title-font mb-1">
                 1 min Read
               </h2>
-              <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+              <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-2">
                 Trending Articles
               </h1>
             </div>
@@ -53,7 +53,7 @@ export default function Articles({ posts }) {
               <PostCard key={index} post={post.node} />
             ))}
           </div>
-          <div className="lg:col-span-4 col-span-1">
+          <div className="lg:col-span-4 col-span-1 lg:mb-4 mb-16">
             <div className="lg:sticky relative top-8">
               <PostWidget />
               <Categories />

@@ -24,7 +24,7 @@ const About = () => {
             <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">
               About Nextron Blog
             </h1>
-            <p className="text-start leading-relaxed px-16 mx-auto">
+            <p className="text-start leading-relaxed lg:px-16 px-5 mx-auto">
               Welcome to Nextron Coding Blog, your ultimate resource for
               cutting-edge coding knowledge and insights! Our platform is
               dedicated to bringing you the latest trends, best practices, and
@@ -165,7 +165,7 @@ const About = () => {
           <h4 className="text-xl text-center font-medium  text-gray-900 mb-4 mt-10">
             Our Mission
           </h4>
-          <p className="text-start leading-relaxed px-16 mx-auto">
+          <p className="text-start leading-relaxed lg:px-16 px-5 mx-auto">
             At Nextron Coding Blog, our mission is to empower developers with
             the knowledge and tools they need to excel in their careers. We
             strive to provide high-quality, accessible, and up-to-date content

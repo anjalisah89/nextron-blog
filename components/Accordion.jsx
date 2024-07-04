@@ -39,7 +39,7 @@ const Accordion = ({ title, content }) => {
 
 const AccordionSection = () => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-5">
       <div className="w-full md:w-1/2 mx-auto">
         <Accordion
           title="How can I read the Articles?"

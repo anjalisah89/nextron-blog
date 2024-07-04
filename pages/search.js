@@ -26,16 +26,10 @@ const Search = ({ posts }) => {
       </Head>
       <Header />
       <div className="lg:grid lg:grid-cols-12 lg:gap-12 px-5">
-        <div className="lg:col-span-4 col-span-1">
-          <div className="lg:sticky relative top-8">
-            <PostWidget />
-            <Categories />
-          </div>
-        </div>
         <div className="lg:col-span-8 col-span-1 mt-4 rounded-lg">
-          <section className="text-gray-600 body-font">
-            <div className="container px-5 mx-auto">
-              <div className="flex flex-wrap w-full mb-10">
+          <section className="text-gray-600 body-font mb-4">
+            <div className="container lg:px-5 mx-auto">
+              <div className="flex flex-wrap w-full lg:mb-10">
                 <div className="w-full mb-6 lg:mb-0">
                   <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
                     Search Results For {'"'}
@@ -46,10 +40,10 @@ const Search = ({ posts }) => {
                 </div>
               </div>
               <div className="flex flex-wrap -m-4">
-                {posts.length > 0 ? (
+                {s !== "" && posts.length > 0 ? (
                   posts.map((post, index) => (
                     <div
-                      className="xl:w-1/2 md:w-1/2 p-4"
+                      className="xl:w-1/2 w-full p-4"
                       key={post.id || index}
                     >
                       <div className="bg-gray-100 p-6 rounded-lg">
@@ -79,12 +73,20 @@ const Search = ({ posts }) => {
                   ))
                 ) : (
                   <p className="font-medium ml-5 mb-2 text-gray-900">
-                    No posts found!!
+                    No posts found for {"'"}
+                    {s}
+                    {"'"}
                   </p>
                 )}
               </div>
             </div>
           </section>
+        </div>
+        <div className="lg:col-span-4 col-span-1 lg:mb-4 mb-16">
+          <div className="lg:sticky relative top-8">
+            <PostWidget />
+            <Categories />
+          </div>
         </div>
       </div>
       <TopButton />

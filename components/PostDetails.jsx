@@ -8,9 +8,12 @@ import "prismjs/themes/prism-tomorrow.css";
 // import "prismjs/themes/prism-funky.css";
 // import "prismjs/themes/prism-coy.css";
 // import "prismjs/themes/prism-solarized-dark.css";
+import { useRouter } from "next/router";
 
 const PostDetail = ({ post }) => {
   const [copyStatus, setCopyStatus] = useState("");
+  const router = useRouter();
+
   const copyToClipboard = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -92,8 +95,15 @@ const PostDetail = ({ post }) => {
   };
 
   useEffect(() => {
-    Prism.highlightAll();
-  }, []);
+    const applyPrismStyles = () => {
+      Prism.highlightAll();
+    };
+    applyPrismStyles();
+    router.events.on("routeChangeComplete", applyPrismStyles);
+    return () => {
+      router.events.off("routeChangeComplete", applyPrismStyles);
+    };
+  }, [router.events]);
 
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8 lg:mt-4 mt-4">
