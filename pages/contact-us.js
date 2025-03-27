@@ -89,7 +89,7 @@ const Contact = () => {
         <link rel="icon" href="/image/logo.svg" type="image/svg+xml" />
       </Head>
       <Header />
-      <section className="text-black body-font relative">
+      <section className="text-gray-700 body-font relative">
         <div className="container px-5 py-5 mx-auto">
           <div className="flex flex-col text-center w-full mb-8">
             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-black">

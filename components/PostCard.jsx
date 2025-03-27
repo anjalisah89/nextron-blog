@@ -23,17 +23,19 @@ const PostCard = ({ post }) => (
     </h1>
     <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
       <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
-        <Image
-          unoptimized
-          fetchpriority="high"
-          alt={post.author.name}
-          height={30}
-          width={30}
-          className="align-middle rounded-full"
-          src={post.author.photo.url}
-        />
+        {post?.author?.photo?.url ? (
+          <Image
+            unoptimized
+            fetchpriority="high"
+            alt={post?.author?.name}
+            height={30}
+            width={30}
+            className="align-middle rounded-full"
+            src={post?.author?.photo?.url}
+          />
+        ) : null}
         <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
-          {post.author.name ? post.author.name : "Anonymous"}
+          {post?.author?.name ? post?.author?.name : "Anonymous"}
         </p>
       </div>
       <div className="font-medium text-gray-700">
