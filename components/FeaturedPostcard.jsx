@@ -20,18 +20,18 @@ const FeaturedPostCard = ({ post }) => (
         {post.title}
       </p>
       <div className="flex items-center absolute bottom-5 w-full justify-center">
-        {post.author.name ? (
+        {post?.author?.photo?.url ? (
           <Image
             unoptimized
-            alt={post.author.name}
+            alt={post?.author?.name}
             height={30}
             width={30}
             className="align-middle drop-shadow-lg rounded-full"
-            src={post.author.photo.url}
+            src={post?.author?.photo?.url}
           />
         ) : null}
         <p className="inline align-middle text-white text-shadow ml-2 font-medium">
-          {post.author.name ? post.author.name : "Anonymous"}
+          {post?.author?.name ? post?.author?.name : "Anonymous"}
         </p>
       </div>
     </div>
